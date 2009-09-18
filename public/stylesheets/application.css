@@ -40,7 +40,7 @@ form label {
   width: 4em;
 }
 form input[type="text"], form input[type="file"] {
-  width: 20em;
+  width: 30em;
   border: 1px solid #CCC;
 }
 
@@ -110,8 +110,8 @@ div#pictures div.picture {
   vertical-align: top;
   border: 1px solid #DDD;
   padding: .5em;
-  margin-right: 1em;
-  margin-bottom: 1em;
+  margin-right: .8em;
+  margin-bottom: .8em;
   -moz-border-radius: .5em;
   -webkit-border-radius: .5em;
 }
@@ -142,15 +142,28 @@ div.picture p.image img {
   max-width: 57em;
 }
 
+div#new-form-container {
+  display: none;
+  margin-top: 1em;
+}
+div#new-form-container form {
+  border: 1px solid #DDD;
+  display: inline-block;
+* display: inline;
+* zoom: 1;
+  padding: 1em;
+  background: #EEE;
+}
+
 
 /* The scaffolding styles */
 #errorExplanation {
   width: 32em;
-  border: 1px solid red;
+  border: 2px solid red;
   padding: 1em;
   padding-bottom: 12px;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: #FFF0F0;
 }
 
 #errorExplanation h2 {

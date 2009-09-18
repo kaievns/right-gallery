@@ -51,6 +51,8 @@ class PicturesController < ApplicationController
         format.html { render :action => "new" }
         format.xml  { render :xml => @picture.errors, :status => :unprocessable_entity }
       end
+      
+      format.js   { render :layout => 'iframed', :content_type => 'text/html' }
     end
   end
 
@@ -68,6 +70,8 @@ class PicturesController < ApplicationController
         format.html { render :action => "edit" }
         format.xml  { render :xml => @picture.errors, :status => :unprocessable_entity }
       end
+      
+      format.js   { render :layout => 'iframed', :content_type => 'text/html' }
     end
   end
 
@@ -80,6 +84,7 @@ class PicturesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(pictures_url) }
       format.xml  { head :ok }
+      format.js
     end
   end
 end

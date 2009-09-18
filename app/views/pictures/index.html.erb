@@ -4,4 +4,32 @@
   <%= render @pictures %>
 </div>
 
-<%= link_to 'New picture', new_picture_path %>
+<%= link_to 'New picture', new_picture_path, :id => 'link-to-new' %>
+
+<div id="new-form-container">
+  <% @picture = Picture.new %>
+  <%= render 'form' %>
+</div>
+
+<script type="text/javascript">
+// <![CDATA[
+
+$('link-to-new').onClick(function(event) {
+  event.stop();
+  $('new-form-container').toggle('slide');
+});
+
+function insert_picture(source) {
+  $('pictures').insert(source);
+  Lightbox.rescan();
+}
+
+function remotize_form(form_id) {
+  var form = $(form_id).remotize().enable();
+  form.action += '.js'; // switching to 'js' format for those requests
+};
+
+remotize_form('new_picture');
+
+// ]]>
+</script>

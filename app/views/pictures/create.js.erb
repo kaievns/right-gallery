@@ -1,0 +1,13 @@
+<% if @picture.valid? %>
+  insert_picture("<%= escape_javascript(render @picture) %>");
+  
+  <%
+    flash.clear
+    
+    # setting up a new dummy image to reset the form
+    @picture = Picture.new
+  %>
+<% end %>
+
+$('new_picture').replace("<%= escape_javascript(render('form')) %>");
+remotize_form('new_picture');
