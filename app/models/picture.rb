@@ -1,5 +1,5 @@
 class Picture < ActiveRecord::Base
-  has_attached_file :image, :styles => {:thmb => "300x200>", :medium => "600x400>"}
+  has_attached_file :image, :styles => {:thmb => "200x150>", :medium => "800x600>"}
   
   validates_presence_of :title
   validates_attachment_presence :image

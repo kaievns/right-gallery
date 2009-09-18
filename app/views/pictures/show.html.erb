@@ -2,7 +2,7 @@
 
 <% div_for @picture do %>
 <p class="image">
-  <%= image_tag @picture.image.url %>
+  <%= link_to image_tag(@picture.image.url(:medium)), @picture.image.url %>
 </p>
 <% end -%>
 

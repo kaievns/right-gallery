@@ -4,8 +4,9 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <title>Pictures: <%= controller.action_name %></title>
-    <%= stylesheet_link_tag 'scaffold', 'application' %>
-    <%= javascript_include_tag 'right', 'right-lightbox' %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'right' %>
+    <%= javascript_include_tag 'right-lightbox' if controller.action_name == 'index' %>
   </head>
   <body>
     <div id="body">

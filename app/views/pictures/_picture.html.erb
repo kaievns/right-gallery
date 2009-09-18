@@ -1,5 +1,7 @@
 <% div_for picture do %>
-  <%= link_to image_tag(picture.image.url(:thmb)), picture.image.url(:medium), :title => picture.title, :rel => "lightbox[roadtrip]" %>
+  <div class="image">
+    <%= link_to image_tag(picture.image.url(:thmb)), picture.image.url(:medium), :title => picture.title, :rel => "lightbox[roadtrip]" %>
+  </div>
   
   <div class="title"><%=h picture.title %></div>
   
