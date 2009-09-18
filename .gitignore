@@ -1,0 +1,9 @@
+log/*.log
+db/*.sql
+db/*.sqlite3
+tmp/**/*
+!tmp/**/.gitignore
+public/images/uploads
+
+*/**/.DS_Store
+
