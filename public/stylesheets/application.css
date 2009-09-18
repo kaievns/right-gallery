@@ -143,7 +143,10 @@ div#pictures div.picture form {
   padding: 1em;
   background: #EEE;
   z-index: 10000000000;
-  -webkit-box-shadow: #AAA .5em .5em .5em;
+  -moz-box-shadow: #AAA .2em .3em .5em;
+  -webkit-box-shadow: #AAA .2em .3em .5em;
+  -moz-border-radius: .3em;
+  -webkit-border-radius: .3em;
 }
 
 div#pictures div.picture div.spinner {
@@ -188,6 +191,8 @@ div#new-form-container form {
 * zoom: 1;
   padding: 1em;
   background: #EEE;
+  -moz-border-radius: .4em;
+  -webkit-border-radius: .4em;
 }
 
 

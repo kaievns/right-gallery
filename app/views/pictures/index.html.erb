@@ -14,14 +14,14 @@
 <script type="text/javascript">
 // <![CDATA[
 
-// highjacking the new-picture link
+// hijacking the new-picture link
 $('link-to-new').onClick(function(event) {
   event.stop();
   $('new-form-container').toggle('slide');
 });
 
-// highjacking all the rest of the links
-function highjack_links() {
+// hijacking all the rest of the links
+function hijack_links() {
   $$("#pictures a.edit").each(function(link) {
     link.onclick = function(event) { event.stop();
       Xhr.load(this.href + ".js", {
@@ -43,6 +43,53 @@ function highjack_links() {
   });
 };
 
+
+// inserts the new image to the list
+function insert_picture(source) {
+  $('pictures').insert(source);
+  Lightbox.rescan();
+  hijack_links();
+  
+  highlight_picture($$('div.picture').last());
+};
+
+// updates the a picture element
+function update_picture(id, source) {
+  remove_all_edit_forms();
+  $('picture_'+id).replace(source);
+  highlight_picture($('picture_'+id));
+  
+  Lightbox.rescan();
+  hijack_links();
+};
+
+// hightlights the element
+function highlight_picture(element) {
+  element.highlight.bind(element).delay(400);
+};
+
+// removes the picture by id
+function remove_picture(id) {
+  $('picture_'+id).hide('fade');
+};
+
+
+
+
+// remotizes the form
+function remotize_form(form_id) {
+  var form = $(form_id);
+  if (form) {
+    form.remotize().enable().action += '.js'; // switching to 'js' format for those requests
+  }
+};
+
+// handles the form replacement
+function replace_form(id, source) {
+  $(id).replace(source);
+  remotize_form(id);
+};
+
 // handles the edit-form displaying 
 function show_edit_form(id, source) {
   remove_all_edit_forms();
@@ -61,41 +108,10 @@ document.onKeydown(function(event) {
   }
 });
 
-// hightlights the element
-function highlight_picture(element) {
-  element.highlight.bind(element).delay(400);
-};
-
-// updates the a picture element
-function update_picture(id, source) {
-  remove_all_edit_forms();
-  $('picture_'+id).replace(source);
-  highlight_picture($('picture_'+id));
-  
-  Lightbox.rescan();
-  highjack_links();
-};
-
-// inserts the new image to the list
-function insert_picture(source) {
-  $('pictures').insert(source);
-  Lightbox.rescan();
-  highjack_links();
-  
-  highlight_picture($$('div.picture').last());
-};
-
-// remotizes the form
-function remotize_form(form_id) {
-  var form = $(form_id);
-  if (form) {
-    form.remotize().enable().action += '.js'; // switching to 'js' format for those requests
-  }
-};
 
 // onload operations
 remotize_form('new_picture');
-highjack_links();
+hijack_links();
 
 // ]]>
 </script>

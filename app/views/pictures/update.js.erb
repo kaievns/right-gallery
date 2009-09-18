@@ -2,6 +2,5 @@
   <% flash.clear %>
   update_picture(<%= @picture.id %>, "<%= escape_javascript(render(@picture))%>");
 <% else %>
-  $('edit_picture_<%= @picture.id%>').replace("<%= escape_javascript(render(@picture)) %>");
-  remotize_form($('edit_picture_<%= @picture.id %>'));
+  replace_form('edit_picture_<%= @picture.id%>', "<%= escape_javascript(render(@picture)) %>");
 <% end -%>

@@ -9,5 +9,4 @@
   %>
 <% end %>
 
-$('new_picture').replace("<%= escape_javascript(render('form')) %>");
-remotize_form('new_picture');
+replace_form('new_picture', "<%= escape_javascript(render('form')) %>");
