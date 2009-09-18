@@ -14,22 +14,85 @@
 <script type="text/javascript">
 // <![CDATA[
 
+// highjacking the new-picture link
 $('link-to-new').onClick(function(event) {
   event.stop();
   $('new-form-container').toggle('slide');
 });
 
+// highjacking all the rest of the links
+function highjack_links() {
+  $$("#pictures a.edit").each(function(link) {
+    link.onclick = function(event) { event.stop();
+      Xhr.load(this.href + ".js", {
+        spinner: this.parent('div.picture').first('.spinner')
+      });
+    }
+  });
+  
+  $$("#pictures a.delete").each(function(link) {
+    link.onclick = function(event) { event.stop();
+      if (confirm("Are you sure?")) {
+        Xhr.load(this.href+".js", {
+          method: 'delete',
+          spinner: this.parent('div.picture').first('.spinner'),
+          authenticity_token: '<%= form_authenticity_token %>'
+        });
+      }
+    };
+  });
+};
+
+// handles the edit-form displaying 
+function show_edit_form(id, source) {
+  remove_all_edit_forms();
+  remotize_form($('picture_'+id).insert(source).first('form.edit_picture').show('fade'));
+};
+
+// removes all the edit-picture forms out of the page
+function remove_all_edit_forms() {
+  $$('form.edit_picture').each('remove');
+};
+document.onKeydown(function(event) {
+  if (event.keyCode == 27) { // Escape keys
+    remove_all_edit_forms();
+  }
+});
+
+// hightlights the element
+function highlight_picture(element) {
+  element.highlight.bind(element).delay(400);
+};
+
+function update_picture(id, source) {
+  remove_all_edit_forms();
+  $('picture_'+id).replace(source);
+  highlight_picture($('picture_'+id));
+  
+  Lightbox.rescan();
+  highjack_links();
+};
+
+// inserts the new image to the list
 function insert_picture(source) {
   $('pictures').insert(source);
   Lightbox.rescan();
-}
-
-function remotize_form(form_id) {
-  var form = $(form_id).remotize().enable();
-  form.action += '.js'; // switching to 'js' format for those requests
+  highjack_links();
+  
+  highlight_picture($$('div.picture').last());
 };
 
+// remotizes the form
+function remotize_form(form_id) {
+  var form = $(form_id);
+  if (form) {
+    form.remotize().enable().action += '.js'; // switching to 'js' format for those requests
+  }
+};
+
+// onload operations
 remotize_form('new_picture');
+highjack_links();
 
 // ]]>
 </script>
