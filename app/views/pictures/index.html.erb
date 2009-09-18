@@ -53,8 +53,10 @@ function show_edit_form(id, source) {
 function remove_all_edit_forms() {
   $$('form.edit_picture').each('remove');
 };
+
+// catching the escape button press to hide all the popups
 document.onKeydown(function(event) {
-  if (event.keyCode == 27) { // Escape keys
+  if (event.keyCode == 27) {
     remove_all_edit_forms();
   }
 });
@@ -64,6 +66,7 @@ function highlight_picture(element) {
   element.highlight.bind(element).delay(400);
 };
 
+// updates the a picture element
 function update_picture(id, source) {
   remove_all_edit_forms();
   $('picture_'+id).replace(source);
