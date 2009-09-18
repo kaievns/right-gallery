@@ -3,7 +3,7 @@ db/*.sql
 db/*.sqlite3
 tmp/**/*
 !tmp/**/.gitignore
-public/images/uploads
+public/system
 
 */**/.DS_Store
 

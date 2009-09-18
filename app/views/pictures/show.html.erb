@@ -1,0 +1,10 @@
+<h1><%= @picture.title %></h1>
+
+<% div_for @picture do %>
+<p class="image">
+  <%= image_tag @picture.image.url %>
+</p>
+<% end -%>
+
+<%= link_to 'Edit', edit_picture_path(@picture) %> |
+<%= link_to 'Back', pictures_path %>
